@@ -84,40 +84,22 @@
 
 
 
-<meta name="description" content="java反射所有的类都是java.lang.Class类的对象获得Class实例的三种方法：   
-    Class c1 = Foo.class;
-    Class c2 = foo1.getClass();
-    Class c3 = Class.forName(&quot;完整类名&quot;);
-
-
-
-可以通过c1,c2,c3创建Foo的实例   
-Foo foo = (Foo)c1.newInstan">
+<meta name="description" content="java反射所有的类都是java.lang.Class类的对象获得Class实例的三种方法：123Class c1 = Foo.class;Class c2 = foo1.getClass();Class c3 = Class.forName(&quot;完整类名&quot;);
+可以通过c1,c2,c3创建Foo的实例1Foo foo = (Foo)c1.newInstance();
+用new创建对象是静态加载类，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java反射">
 <meta property="og:url" content="http://thluckystar.github.io/2016/07/25/java反射机制/index.html">
 <meta property="og:site_name" content="Erving's Blog">
-<meta property="og:description" content="java反射所有的类都是java.lang.Class类的对象获得Class实例的三种方法：   
-    Class c1 = Foo.class;
-    Class c2 = foo1.getClass();
-    Class c3 = Class.forName(&quot;完整类名&quot;);
-
-
-
-可以通过c1,c2,c3创建Foo的实例   
-Foo foo = (Foo)c1.newInstan">
-<meta property="og:updated_time" content="2016-07-25T08:44:54.940Z">
+<meta property="og:description" content="java反射所有的类都是java.lang.Class类的对象获得Class实例的三种方法：123Class c1 = Foo.class;Class c2 = foo1.getClass();Class c3 = Class.forName(&quot;完整类名&quot;);
+可以通过c1,c2,c3创建Foo的实例1Foo foo = (Foo)c1.newInstance();
+用new创建对象是静态加载类，">
+<meta property="og:updated_time" content="2016-08-04T16:06:03.648Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java反射">
-<meta name="twitter:description" content="java反射所有的类都是java.lang.Class类的对象获得Class实例的三种方法：   
-    Class c1 = Foo.class;
-    Class c2 = foo1.getClass();
-    Class c3 = Class.forName(&quot;完整类名&quot;);
-
-
-
-可以通过c1,c2,c3创建Foo的实例   
-Foo foo = (Foo)c1.newInstan">
+<meta name="twitter:description" content="java反射所有的类都是java.lang.Class类的对象获得Class实例的三种方法：123Class c1 = Foo.class;Class c2 = foo1.getClass();Class c3 = Class.forName(&quot;完整类名&quot;);
+可以通过c1,c2,c3创建Foo的实例1Foo foo = (Foo)c1.newInstance();
+用new创建对象是静态加载类，">
 
 
 
@@ -140,6 +122,8 @@ Foo foo = (Foo)c1.newInstan">
 
   <link rel="canonical" href="http://thluckystar.github.io/2016/07/25/java反射机制/"/>
 
+
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.1.0/styles/hopscotch.min.css">
   <title> java反射 | Erving's Blog </title>
 </head>
 
@@ -329,46 +313,29 @@ Foo foo = (Foo)c1.newInstan">
       
 
       
-        <h2 id="java反射"><a href="#java反射" class="headerlink" title="java反射"></a>java反射</h2><p>所有的类都是<code>java.lang.Class</code>类的对象<br>获得<code>Class</code>实例的三种方法：   </p>
-<pre><code>    Class c1 = Foo.class;
-    Class c2 = foo1.getClass();
-    Class c3 = Class.forName("完整类名");
-</code></pre>
-
-
-<p>可以通过c1,c2,c3创建Foo的实例   </p>
-<pre><code>Foo foo = (Foo)c1.newInstance();</code></pre>
-
+        <h2 id="java反射"><a href="#java反射" class="headerlink" title="java反射"></a>java反射</h2><p>所有的类都是<code>java.lang.Class</code>类的对象<br>获得<code>Class</code>实例的三种方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Class c1 = Foo.class;</div><div class="line">Class c2 = foo1.getClass();</div><div class="line">Class c3 = Class.forName(<span class="string">"完整类名"</span>);</div></pre></td></tr></table></figure></p>
+<p>可以通过c1,c2,c3创建Foo的实例<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Foo foo = (Foo)c1.newInstance();</div></pre></td></tr></table></figure></p>
 <p>用new创建对象是静态加载类，在编译时刻就要加载所有可能使用的类，缺点是有一个类有问题，整个程序就编译不通过。功能性的类最后使用动态加载类。需要强制类型转换时，可使功能性类实现同一个接口。</p>
-<h2 id="获取方法信息"><a href="#获取方法信息" class="headerlink" title="获取方法信息"></a>获取方法信息</h2><p>获取类名称：<code>c.getName()</code><br>获取所有方法：   </p>
-<pre><code>Method[] ms = c.getMethods();//c.getDeclaredMethods()</code></pre>
-getMethods获取所有public方法的信息，getDeclaredMethods是获取该类自己声明的成员变量的信息   
-得到方法返回值类型的类类型：
-  <pre><code>Class returnType = ms[i].getReturnType();
-returnType.getName();</code></pre>
-得到方法名称：`ms[i].getName();`      
-得到参数类型的类类型：   
-<pre><code>Class[] paramTypes = ms[i].getParameterTypes();</code></pre>
-
-<h2 id="获取成员变量："><a href="#获取成员变量：" class="headerlink" title="获取成员变量："></a>获取成员变量：</h2><pre><code>Field[] fs = c.getFields();//c.getDeclaredFields();</code></pre>
-得到成员变量类型的类类型:   
-<pre><code>Class fieldType = fs[i].getType();</code></pre>
-得到成员变量的名称:   
-<pre><code>String fieldName = fs[i].getName();</code></pre>
-
-<h2 id="获取构造方法："><a href="#获取构造方法：" class="headerlink" title="获取构造方法："></a>获取构造方法：</h2><pre><code>Constructor[] cs = c.getConstructor();//c.getDeclaredConstructors();</code></pre>
-
+<h2 id="获取方法信息"><a href="#获取方法信息" class="headerlink" title="获取方法信息"></a>获取方法信息</h2><p>获取类名称：<code>c.getName()</code><br>获取所有方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Method[] ms = c.getMethods();<span class="comment">//c.getDeclaredMethods()</span></div></pre></td></tr></table></figure></p>
+<p>getMethods获取所有public方法的信息，getDeclaredMethods是获取该类自己声明的成员变量的信息<br>得到方法返回值类型的类类型：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Class returnType = ms[i].getReturnType();</div><div class="line">returnType.getName();</div></pre></td></tr></table></figure></p>
+<p>得到方法名称：<code>ms[i].getName();</code><br>得到参数类型的类类型：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Class[] paramTypes = ms[i].getParameterTypes();</div></pre></td></tr></table></figure></p>
+<h2 id="获取成员变量："><a href="#获取成员变量：" class="headerlink" title="获取成员变量："></a>获取成员变量：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Field[] fs = c.getFields();<span class="comment">//c.getDeclaredFields();</span></div></pre></td></tr></table></figure>
+<p>得到成员变量类型的类类型:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Class fieldType = fs[i].getType();</div></pre></td></tr></table></figure></p>
+<p>得到成员变量的名称:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String fieldName = fs[i].getName();</div></pre></td></tr></table></figure></p>
+<h2 id="获取构造方法："><a href="#获取构造方法：" class="headerlink" title="获取构造方法："></a>获取构造方法：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Constructor[] cs = c.getConstructor();<span class="comment">//c.getDeclaredConstructors();</span></div></pre></td></tr></table></figure>
 <h2 id="方法的反射："><a href="#方法的反射：" class="headerlink" title="方法的反射："></a>方法的反射：</h2><ul>
-<li>获取方法   <pre><code>Method m = c.getMethod("print", new Class[]{int.class, int.class});</code></pre>
-或
-<pre><code>Method m = c.getMethod("print",int.class,int.class);</code></pre>
-
-
-</li>
+<li>获取方法</li>
 </ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Method m = c.getMethod(<span class="string">"print"</span>, <span class="keyword">new</span> Class[]&#123;<span class="keyword">int</span>.class, <span class="keyword">int</span>.class&#125;);</div></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Method m = c.getMethod(<span class="string">"print"</span>,<span class="keyword">int</span>.class,<span class="keyword">int</span>.class);</div></pre></td></tr></table></figure>
 <ul>
-<li>方法的反射<br><pre><code>Object o = m.invoke(a1,new Object[]{10,20});</code></pre>或<pre><code>Object o = m.invoke(a1,10,20);</code></pre><br>效果等同于<code>a1.print(10,20);</code>   </li>
+<li>方法的反射</li>
 </ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object o = m.invoke(a1,<span class="keyword">new</span> Object[]&#123;<span class="number">10</span>,<span class="number">20</span>&#125;);</div></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object o = m.invoke(a1,<span class="number">10</span>,<span class="number">20</span>);</div></pre></td></tr></table></figure>
+<p>效果等同于<code>a1.print(10,20);</code>   </p>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><strong>反射的操作都是编译之后的操作</strong><br>java中集合的泛型，仅是防止错误输入的，只在编译阶段有效，绕过编译就无效了，可以通过方法的反射来验证。</p>
 
       
@@ -427,24 +394,6 @@ returnType.getName();</code></pre>
 
 
     <div class="post-spread">
-      
-        <div class="-mob-share-ui-button -mob-share-open">分享</div>
-<div class="-mob-share-ui" style="display: none">
-    <ul class="-mob-share-list">
-        <li class="-mob-share-weibo"><p>新浪微博</p></li>
-        <li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
-        <li class="-mob-share-qzone"><p>QQ空间</p></li>
-        <li class="-mob-share-qq"><p>QQ好友</p></li>
-        <li class="-mob-share-renren"><p>人人网</p></li>
-        <li class="-mob-share-kaixin"><p>开心网</p></li>
-        <li class="-mob-share-douban"><p>豆瓣</p></li>
-        <li class="-mob-share-facebook"><p>Facebook</p></li>
-        <li class="-mob-share-twitter"><p>Twitter</p></li>
-    </ul>
-    <div class="-mob-share-close">取消</div>
-</div>
-<div class="-mob-share-ui-bg"></div>
-<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=15594582e7d8c"></script>
       
     </div>
   </div>
