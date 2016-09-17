@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="java,反射," />
+  <meta name="keywords" content="java,swf," />
 
 
 
@@ -84,22 +84,19 @@
 
 
 
-<meta name="description" content="java反射所有的类都是java.lang.Class类的对象获得Class实例的三种方法：123Class c1 = Foo.class;Class c2 = foo1.getClass();Class c3 = Class.forName(&quot;完整类名&quot;);
-可以通过c1,c2,c3创建Foo的实例1Foo foo = (Foo)c1.newInstance();
-用new创建对象是静态加载类，">
+<meta name="description" content="最近在做一个项目，需要将swf文件转换成mp3文件。直接进行格式转换是行不通的，目前世面上主流的格式转换工具，如格式工厂、狸窝也无法做到。究其原因，swf是一个很特殊的格式。我们当前在视频网站上看的视频，尤其是在PC端，基本都是swf格式的，但是swf与常见的视频格式有很大的不同。swf是Adobe Flash导出后的格式，是具有交互性的，有时需要用户手动触发才能播放指定的画面、声音等。
+因此，上">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java反射">
-<meta property="og:url" content="http://thluckystar.github.io/2016/07/25/java反射机制/index.html">
+<meta property="og:title" content="java提取swf文件中的音频">
+<meta property="og:url" content="http://thluckystar.github.io/2016/09/17/java提取swf文件中的音频/index.html">
 <meta property="og:site_name" content="Erving's Blog">
-<meta property="og:description" content="java反射所有的类都是java.lang.Class类的对象获得Class实例的三种方法：123Class c1 = Foo.class;Class c2 = foo1.getClass();Class c3 = Class.forName(&quot;完整类名&quot;);
-可以通过c1,c2,c3创建Foo的实例1Foo foo = (Foo)c1.newInstance();
-用new创建对象是静态加载类，">
-<meta property="og:updated_time" content="2016-08-04T16:06:03.648Z">
+<meta property="og:description" content="最近在做一个项目，需要将swf文件转换成mp3文件。直接进行格式转换是行不通的，目前世面上主流的格式转换工具，如格式工厂、狸窝也无法做到。究其原因，swf是一个很特殊的格式。我们当前在视频网站上看的视频，尤其是在PC端，基本都是swf格式的，但是swf与常见的视频格式有很大的不同。swf是Adobe Flash导出后的格式，是具有交互性的，有时需要用户手动触发才能播放指定的画面、声音等。
+因此，上">
+<meta property="og:updated_time" content="2016-09-17T09:11:19.165Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java反射">
-<meta name="twitter:description" content="java反射所有的类都是java.lang.Class类的对象获得Class实例的三种方法：123Class c1 = Foo.class;Class c2 = foo1.getClass();Class c3 = Class.forName(&quot;完整类名&quot;);
-可以通过c1,c2,c3创建Foo的实例1Foo foo = (Foo)c1.newInstance();
-用new创建对象是静态加载类，">
+<meta name="twitter:title" content="java提取swf文件中的音频">
+<meta name="twitter:description" content="最近在做一个项目，需要将swf文件转换成mp3文件。直接进行格式转换是行不通的，目前世面上主流的格式转换工具，如格式工厂、狸窝也无法做到。究其原因，swf是一个很特殊的格式。我们当前在视频网站上看的视频，尤其是在PC端，基本都是swf格式的，但是swf与常见的视频格式有很大的不同。swf是Adobe Flash导出后的格式，是具有交互性的，有时需要用户手动触发才能播放指定的画面、声音等。
+因此，上">
 
 
 
@@ -120,11 +117,11 @@
 
 
 
-  <link rel="canonical" href="http://thluckystar.github.io/2016/07/25/java反射机制/"/>
+  <link rel="canonical" href="http://thluckystar.github.io/2016/09/17/java提取swf文件中的音频/"/>
 
 
 <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.1.0/styles/hopscotch.min.css">
-  <title> java反射 | Erving's Blog </title>
+  <title> java提取swf文件中的音频 | Erving's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -254,7 +251,7 @@
             
             
               
-                java反射
+                java提取swf文件中的音频
               
             
           </h1>
@@ -266,8 +263,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-25T15:35:32+08:00" content="2016-07-25">
-              2016-07-25
+            <time itemprop="dateCreated" datetime="2016-09-17T17:08:26+08:00" content="2016-09-17">
+              2016-09-17
             </time>
           </span>
 
@@ -313,31 +310,12 @@
       
 
       
-        <h2 id="java反射"><a href="#java反射" class="headerlink" title="java反射"></a>java反射</h2><p>所有的类都是<code>java.lang.Class</code>类的对象<br>获得<code>Class</code>实例的三种方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Class c1 = Foo.class;</div><div class="line">Class c2 = foo1.getClass();</div><div class="line">Class c3 = Class.forName(<span class="string">"完整类名"</span>);</div></pre></td></tr></table></figure></p>
-<p>可以通过c1,c2,c3创建Foo的实例<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Foo foo = (Foo)c1.newInstance();</div></pre></td></tr></table></figure></p>
-<p>用new创建对象是静态加载类，在编译时刻就要加载所有可能使用的类，缺点是有一个类有问题，整个程序就编译不通过。功能性的类最后使用动态加载类。需要强制类型转换时，可使功能性类实现同一个接口。</p>
-<h2 id="获取方法信息"><a href="#获取方法信息" class="headerlink" title="获取方法信息"></a>获取方法信息</h2><p>获取类名称：<code>c.getName()</code><br>获取所有方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Method[] ms = c.getMethods();<span class="comment">//c.getDeclaredMethods()</span></div></pre></td></tr></table></figure></p>
-<p>getMethods获取所有public方法的信息，getDeclaredMethods是获取该类自己声明的成员变量的信息<br>得到方法返回值类型的类类型：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Class returnType = ms[i].getReturnType();</div><div class="line">returnType.getName();</div></pre></td></tr></table></figure></p>
-<p>得到方法名称：<code>ms[i].getName();</code><br>得到参数类型的类类型：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Class[] paramTypes = ms[i].getParameterTypes();</div></pre></td></tr></table></figure></p>
-<h2 id="获取成员变量："><a href="#获取成员变量：" class="headerlink" title="获取成员变量："></a>获取成员变量：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Field[] fs = c.getFields();<span class="comment">//c.getDeclaredFields();</span></div></pre></td></tr></table></figure>
-<p>得到成员变量类型的类类型:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Class fieldType = fs[i].getType();</div></pre></td></tr></table></figure></p>
-<p>得到成员变量的名称:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String fieldName = fs[i].getName();</div></pre></td></tr></table></figure></p>
-<h2 id="获取构造方法："><a href="#获取构造方法：" class="headerlink" title="获取构造方法："></a>获取构造方法：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Constructor[] cs = c.getConstructor();<span class="comment">//c.getDeclaredConstructors();</span></div></pre></td></tr></table></figure>
-<h2 id="方法的反射："><a href="#方法的反射：" class="headerlink" title="方法的反射："></a>方法的反射：</h2><ul>
-<li>获取方法</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Method m = c.getMethod(<span class="string">"print"</span>, <span class="keyword">new</span> Class[]&#123;<span class="keyword">int</span>.class, <span class="keyword">int</span>.class&#125;);</div></pre></td></tr></table></figure>
-<p>或</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Method m = c.getMethod(<span class="string">"print"</span>,<span class="keyword">int</span>.class,<span class="keyword">int</span>.class);</div></pre></td></tr></table></figure>
-<ul>
-<li>方法的反射</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object o = m.invoke(a1,<span class="keyword">new</span> Object[]&#123;<span class="number">10</span>,<span class="number">20</span>&#125;);</div></pre></td></tr></table></figure>
-<p>或</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object o = m.invoke(a1,<span class="number">10</span>,<span class="number">20</span>);</div></pre></td></tr></table></figure>
-<p>效果等同于<code>a1.print(10,20);</code>   </p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><strong>反射的操作都是编译之后的操作</strong><br>java中集合的泛型，仅是防止错误输入的，只在编译阶段有效，绕过编译就无效了，可以通过方法的反射来验证。</p>
-
+        <p>最近在做一个项目，需要将swf文件转换成mp3文件。直接进行格式转换是行不通的，目前世面上主流的格式转换工具，如格式工厂、狸窝也无法做到。究其原因，swf是一个很特殊的格式。我们当前在视频网站上看的视频，尤其是在PC端，基本都是swf格式的，但是swf与常见的视频格式有很大的不同。swf是Adobe Flash导出后的格式，是具有交互性的，有时需要用户手动触发才能播放指定的画面、声音等。</p>
+<p>因此，上述问题可以换一种思路：有没有办法将swf文件包含的声音文件提取出来？恰好找到一款叫做SWFTOOLS的工具，可以满足我们的要求。具体的操作如下。</p>
+<h3 id="1-下载SWFTOOLS。"><a href="#1-下载SWFTOOLS。" class="headerlink" title="1. 下载SWFTOOLS。"></a>1. 下载SWFTOOLS。</h3><p>下载地址为：<a href="http://www.swftools.org/download.html" target="_blank" rel="external">http://www.swftools.org/download.html</a></p>
+<h3 id="2-根据提示完成安装"><a href="#2-根据提示完成安装" class="headerlink" title="2. 根据提示完成安装."></a>2. 根据提示完成安装.</h3><p>进到安装目录下，可以看到一系列可执行文件，其中每一个都能完成特定的与swf格式文件相关的功能。我们需要的仅是名为swfextract.exe的文件，它的作用是将swf文件中包含的所有素材文件提取出来。</p>
+<h3 id="3-在安装目录中新建一个批处理文件，swfextract-bat。在文件中键入以下内容："><a href="#3-在安装目录中新建一个批处理文件，swfextract-bat。在文件中键入以下内容：" class="headerlink" title="3. 在安装目录中新建一个批处理文件，swfextract.bat。在文件中键入以下内容："></a>3. 在安装目录中新建一个批处理文件，swfextract.bat。在文件中键入以下内容：</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@echo off</div><div class="line">set swfextractPath=%1</div><div class="line">set inputPath=%2</div><div class="line">set outputPath=%3</div><div class="line">cd /d %swfextractPath%</div><div class="line">swfextract -m %inputPath% -o %outputPath%</div></pre></td></tr></table></figure>
+<h3 id="4-最后运行以下java程序："><a href="#4-最后运行以下java程序：" class="headerlink" title="4. 最后运行以下java程序："></a>4. 最后运行以下java程序：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> jave;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.File;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileTypeTransferUtil</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> String INPUT_PATH;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> String OUTPUT_PATH;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> String SWFEXTRACT_PATH = <span class="string">"D:\\tools\\swftools"</span>;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swfExtract</span><span class="params">(String swffile, String mp3file)</span> </span>&#123;</div><div class="line">		INPUT_PATH = swffile;</div><div class="line">		OUTPUT_PATH = mp3file;</div><div class="line">		<span class="keyword">if</span>(checkContentType() == <span class="number">0</span>) &#123;</div><div class="line">			swftoMp3();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">checkContentType</span><span class="params">()</span></span>&#123;</div><div class="line">		String type = INPUT_PATH.substring(INPUT_PATH.lastIndexOf(<span class="string">"."</span>) + <span class="number">1</span>, INPUT_PATH.length()).toLowerCase();</div><div class="line">		<span class="keyword">if</span>(type.equals(<span class="string">"swf"</span>))&#123;</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			<span class="keyword">return</span> <span class="number">9</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swftoMp3</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span>(<span class="keyword">new</span> File(INPUT_PATH).isFile()) &#123;</div><div class="line">			<span class="keyword">try</span> &#123;</div><div class="line">				String cmd = <span class="string">"cmd /c start D:\\tools\\swftools\\swfextract.bat \""</span> </div><div class="line">						+ SWFEXTRACT_PATH + <span class="string">"\" \""</span> + INPUT_PATH + <span class="string">"\" \""</span> + OUTPUT_PATH + <span class="string">"\""</span>; </div><div class="line">				Runtime.getRuntime().exec(cmd);</div><div class="line">				</div><div class="line">			&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			System.out.println(<span class="string">"*********文件不存在*********"</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -361,7 +339,7 @@
           
             <a href="/tags/java/" rel="tag">#java</a>
           
-            <a href="/tags/反射/" rel="tag">#反射</a>
+            <a href="/tags/swf/" rel="tag">#swf</a>
           
         </div>
       
@@ -370,17 +348,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/25/junit单元测试/" rel="next" title="单元测试-junit">
-                <i class="fa fa-chevron-left"></i> 单元测试-junit
+              <a href="/2016/07/25/Hexo更新文章/" rel="next" title="Hexo更新文章">
+                <i class="fa fa-chevron-left"></i> Hexo更新文章
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/25/Hexo更新文章/" rel="prev" title="Hexo更新文章">
-                Hexo更新文章 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -532,7 +506,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#java反射"><span class="nav-number">1.</span> <span class="nav-text">java反射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取方法信息"><span class="nav-number">2.</span> <span class="nav-text">获取方法信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取成员变量："><span class="nav-number">3.</span> <span class="nav-text">获取成员变量：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取构造方法："><span class="nav-number">4.</span> <span class="nav-text">获取构造方法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法的反射："><span class="nav-number">5.</span> <span class="nav-text">方法的反射：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">6.</span> <span class="nav-text">其他</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-下载SWFTOOLS。"><span class="nav-number">1.</span> <span class="nav-text">1. 下载SWFTOOLS。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-根据提示完成安装"><span class="nav-number">2.</span> <span class="nav-text">2. 根据提示完成安装.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-在安装目录中新建一个批处理文件，swfextract-bat。在文件中键入以下内容："><span class="nav-number">3.</span> <span class="nav-text">3. 在安装目录中新建一个批处理文件，swfextract.bat。在文件中键入以下内容：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-最后运行以下java程序："><span class="nav-number">4.</span> <span class="nav-text">4. 最后运行以下java程序：</span></a></li></ol></div>
             
           </div>
         </section>
